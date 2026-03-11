@@ -1,0 +1,128 @@
+# USCIS I-765 RFE Response Skill
+
+An AI skill for Claude and Gemini CLI that guides users through building a
+complete, professional response to a USCIS Request for Evidence (RFE) on
+Form I-765 (Application for Employment Authorization).
+
+## What It Does
+
+When loaded into Claude or Gemini CLI, this skill:
+
+1. **Reads your RFE letter** and extracts every item USCIS is asking for
+2. **Walks you through your documents** — tells you exactly what each request needs
+3. **Builds a tab-organized PDF packet** (Tab A through I+) with professional cover pages
+4. **Writes your cover letter** fresh — address history table, perjury declaration, full enclosures list
+5. **Quality-checks everything** before you submit
+6. **Guides you through submission** — online via myaccount.uscis.gov or by mail
+
+## Supported I-765 Categories
+
+| Code | Category |
+|------|----------|
+| (c)(3)(A) | F-1 Pre-Completion OPT |
+| (c)(3)(B) | F-1 Post-Completion OPT / CPT |
+| (c)(3)(C) | F-1 STEM OPT Extension |
+| (a)(3) | Refugee |
+| (a)(5) | Asylee |
+| (c)(9) | Pending Adjustment of Status |
+| (c)(14) | Deferred Action |
+| (c)(33) | DACA |
+| others | See `references/i765_categories.md` |
+
+## Repository Structure
+
+```
+uscis-rfe-i765/
+├── SKILL.md                        ← AI instructions (Claude)
+├── GEMINI.md                       ← AI instructions (Gemini CLI)
+├── USER_GUIDE.md                   ← Plain-language guide for applicants
+├── scripts/
+│   ├── build_packet.py             ← PDF packet builder (tab PDFs + cover letter + envelope)
+│   └── requirements.txt            ← Python dependencies
+└── references/
+    ├── i765_categories.md          ← RFE evidence guide by category
+    ├── tab_structure.md            ← Tab organization + case_config.json schema
+    └── cover_letter_guide.md       ← Cover letter writing guide
+```
+
+## Quick Start
+
+### For Claude (Cowork / Claude Code)
+
+1. Download `uscis-rfe-i765.skill` from [Releases](../../releases)
+2. In Claude, click **Copy to your skills**
+3. Start a new conversation and describe your RFE situation
+
+### For Gemini CLI
+
+1. Clone this repo or download the zip
+2. Read `GEMINI.md` for Gemini-specific setup and tool conventions
+3. Install dependencies: `pip install -r scripts/requirements.txt`
+4. Point Gemini at `GEMINI.md` when starting your session
+
+### Running the Build Script Directly
+
+```bash
+pip install -r scripts/requirements.txt
+# Edit case_config.json with your case details (see references/tab_structure.md for schema)
+python scripts/build_packet.py --config case_config.json
+# Output: USCIS_Packet/ folder with all PDFs
+```
+
+## Output Example
+
+Running the build script produces:
+
+```
+USCIS_Packet/
+├── 00_Cover_Letter.pdf                          (7–9 pages)
+├── TabA_USCIS_Filing_Documents.pdf
+├── TabB_School_Letters.pdf
+├── TabC_Full_Course_of_Study_Documentation.pdf
+├── TabD_Course_Syllabi.pdf
+├── TabE_Attendance_Records.pdf
+├── TabF_Tuition_Payment_Receipts.pdf
+├── TabG_Bank_Statements.pdf
+├── TabH_Travel_and_Lodging_Receipts.pdf
+├── TabI_CPT_and_Employment_Documentation.pdf
+└── Envelope_Label.pdf
+```
+
+Each tab PDF has a color-coded professional cover page followed by the
+source documents in order.
+
+## Python Requirements
+
+```
+reportlab>=4.0
+pypdf>=3.0
+Pillow>=9.0
+pdfplumber>=0.9
+```
+
+Install: `pip install -r scripts/requirements.txt`
+
+## Background
+
+This skill was built based on a real F-1 student's I-765 RFE response
+that was **approved under Premium Processing**. The workflow, document
+organization, cover letter structure, and build script reflect what
+actually worked with USCIS.
+
+Key lessons from the real case that are baked into this skill:
+- The `case_config.json`-driven approach keeps the build reproducible
+- Tab ordering within each tab must match the cover letter enclosures list exactly
+- The address history table must cover the full 5-year period with no gaps
+- The build script uses a `if __name__ == "__main__"` guard to prevent import side effects
+- Images (travel photos, screenshots) are auto-converted to labeled PDF pages
+
+## Disclaimer
+
+This tool helps organize and present evidence. It does not provide legal
+advice. If your situation involves prior visa violations, status gaps,
+prior denials, or other complications, consult a licensed immigration
+attorney.
+
+## License
+
+MIT License — free to use, modify, and share.
