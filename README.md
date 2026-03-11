@@ -118,6 +118,15 @@ Key lessons from the real case that are baked into this skill:
 - The build script uses a `if __name__ == "__main__"` guard to prevent import side effects
 - Images (travel photos, screenshots) are auto-converted to labeled PDF pages
 
+## Testing & PR Flow
+
+To verify your environment or a new skill configuration:
+
+1. Clone the repository.
+2. Create a feature branch: `git checkout -b feature/your-feature`.
+3. Make changes and run any local tests.
+4. Push and create a pull request on GitHub.
+
 ## Disclaimer
 
 This tool helps organize and present evidence. It does not provide legal
