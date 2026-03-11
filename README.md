@@ -126,6 +126,7 @@ To verify your environment or a new skill configuration:
 2. Create a feature branch: `git checkout -b feature/your-feature`.
 3. Make changes and run any local tests.
 4. Push and create a pull request on GitHub.
+5. GitHub Actions will automatically review your changes.
 
 ## Disclaimer
 
