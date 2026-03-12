@@ -1,5 +1,14 @@
 # USCIS I-765 RFE Response — Gemini CLI Guide
 
+> **Note:** Gemini CLI now supports the Agent Skills open standard! You can
+> natively install this workflow as a skill using:
+> `gemini skills install https://github.com/your-username/uscis-rfe-i765.git`
+>
+> Once installed, Gemini will automatically read `SKILL.md` and offer to
+> activate it when relevant. This `GEMINI.md` file is preserved here for
+> legacy setups, or if you prefer to use it as project context instead of a
+> discoverable skill.
+
 This file adapts the USCIS RFE response workflow for use with **Gemini CLI**
 (`gemini` command-line tool). The overall workflow is identical to SKILL.md;
 this file covers Gemini-specific tool usage and conventions.
