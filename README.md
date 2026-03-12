@@ -57,10 +57,19 @@ uscis-rfe-i765/
 
 ### For Gemini CLI
 
-1. Clone this repo or download the zip
-2. Read `GEMINI.md` for Gemini-specific setup and tool conventions
-3. Install dependencies: `pip install -r scripts/requirements.txt`
-4. Point Gemini at `GEMINI.md` when starting your session
+Gemini CLI now supports Agent Skills natively! You can install this skill directly:
+
+```bash
+# Install directly from GitHub
+gemini skills install https://github.com/your-username/uscis-rfe-i765.git
+
+# Or if you cloned the repo locally:
+gemini skills link /path/to/uscis-rfe-i765
+```
+
+Gemini will automatically discover the skill and offer to activate it when you ask for help with an I-765 RFE.
+
+*(Note: The legacy `GEMINI.md` file is still included for users who prefer to load the context manually).*
 
 ### Running the Build Script Directly
 
