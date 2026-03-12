@@ -61,7 +61,7 @@ Gemini CLI now supports Agent Skills natively! You can install this skill direct
 
 ```bash
 # Install directly from GitHub
-gemini skills install https://github.com/your-username/uscis-rfe-i765.git
+gemini skills install https://github.com/isaacattuah/uscis-rfe-i765.git
 
 # Or if you cloned the repo locally:
 gemini skills link /path/to/uscis-rfe-i765
